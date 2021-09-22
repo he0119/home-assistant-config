@@ -9,6 +9,8 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 192.168.31.44
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
 
 group: !include groups.yaml
 automation: !include automations.yaml
