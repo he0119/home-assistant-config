@@ -9,6 +9,8 @@
 !node-red
 !node-red/flows.json
 !node-red/.config.users.json
+# esphome
+!esphome
 
 # Ignore folders.
 .storage

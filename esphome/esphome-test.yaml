@@ -1,0 +1,24 @@
+esphome:
+  name: esphome-test
+  platform: ESP8266
+  board: nodemcuv2
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "6017582ab3fc8fab5df14ad173d67c93"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Smart-Home Fallback Hotspot"
+    password: "Hzng3F4B47uK"
+
+captive_portal:
