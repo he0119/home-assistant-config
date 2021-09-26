@@ -2,6 +2,7 @@ esphome:
   name: esphome-test
   platform: ESP8266
   board: nodemcuv2
+  esp8266_restore_from_flash: true
 
 # Enable logging
 logger:
