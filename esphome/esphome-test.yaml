@@ -34,7 +34,6 @@ number:
     step: 1
     optimistic: true
     restore_value: true
-
   - platform: template
     name: "Valve2 Delay"
     id: valve2_delay
@@ -44,7 +43,6 @@ number:
     step: 1
     optimistic: true
     restore_value: true
-
   - platform: template
     name: "Valve3 Delay"
     id: valve3_delay
@@ -54,7 +52,6 @@ number:
     step: 1
     optimistic: true
     restore_value: true
-
   - platform: template
     name: "Pump Delay"
     id: pump_delay
@@ -70,37 +67,34 @@ switch:
     pin: D5
     id: valve1
     name: "valve1"
-    icon: "mdi:restart"
+    icon: "mdi:sprinkler-variant"
     on_turn_on:
       - delay: !lambda |-
           return id(valve1_delay).state * 1000;
       - switch.turn_off: valve1
-
   - platform: gpio
     pin: D6
     id: valve2
     name: "valve2"
-    icon: "mdi:restart"
+    icon: "mdi:sprinkler-variant"
     on_turn_on:
       - delay: !lambda |-
           return id(valve2_delay).state * 1000;
       - switch.turn_off: valve2
-
   - platform: gpio
     pin: D7
     id: valve3
     name: "valve3"
-    icon: "mdi:restart"
+    icon: "mdi:sprinkler-variant"
     on_turn_on:
       - delay: !lambda |-
           return id(valve3_delay).state * 1000;
       - switch.turn_off: valve3
-
   - platform: gpio
     pin: D8
     id: pump
     name: "pump"
-    icon: "mdi:restart"
+    icon: "mdi:pump"
     on_turn_on:
       - delay: !lambda |-
           return id(pump_delay).state * 1000;
@@ -132,11 +126,11 @@ binary_sensor:
       then:
         - switch.toggle: pump
 
-# sensor:
-#   - platform: dht
-#     pin: D4
-#     temperature:
-#       name: "自动浇水盒子温度"
-#     humidity:
-#       name: "自动浇水盒子湿度"
-#     update_interval: 10s
+sensor:
+  - platform: dht
+    pin: D4
+    temperature:
+      name: "Autowatering box temperature"
+    humidity:
+      name: "Autowatering box moisture"
+    update_interval: 10s
