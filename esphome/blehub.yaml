@@ -1,0 +1,51 @@
+esphome:
+  name: blehub
+  platform: ESP32
+  board: nodemcu-32s
+
+# Enable logging
+logger:
+  # level: INFO
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "559e385ed4d77760ac866565ba017a28"
+
+wifi:
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_password
+    bssid: !secret wifi_bssid
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Blehub Fallback Hotspot"
+    password: "LehrNHqYn01K"
+
+captive_portal:
+
+external_components:
+  - source: github://he0119/esphome-components
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 180ms
+    window: 120ms
+
+binary_sensor:
+  - platform: miot_mccgq02hl
+    # String (Required), device MAC-address.
+    mac_address: !secret ci_wei_door_mac_address
+    # String, (Optional), device bind key
+    bindkey: !secret ci_wei_door_token
+    # String, (Optional), the name of binary sensor
+    name: "Ci Wei Door Sensor"
+    light:
+      name: "Ci Wei Door Sensor Light"
+
+sensor:
+  - platform: ble_rssi
+    mac_address: !secret ci_wei_door_mac_address
+    name: "Ci Wei Door Sensor RSSI"
