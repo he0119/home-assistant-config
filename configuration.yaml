@@ -4,6 +4,11 @@ homeassistant:
 
 default_config:
 
+# logger:
+#   default: critical
+#   logs:
+#     custom_components.miio_yeelink: debug
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -37,3 +42,11 @@ camera:
     country: cn
     attributes:
       - calibration_points
+
+light:
+  - platform: miio_yeelink
+    name: Mi Smart Bathroom Heater Pro
+    host: !secret xiaomi_mi_smart_bathroom_heater_pro_host
+    token: !secret xiaomi_mi_smart_bathroom_heater_pro_token
+    model: yeelink.bhf_light.v5
+    scan_interval: 1
