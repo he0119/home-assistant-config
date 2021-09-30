@@ -96,7 +96,6 @@ switch:
     icon: "mdi:sprinkler-variant"
     on_turn_on:
       - script.execute: valve1_delay_off
-
   - platform: gpio
     pin: D6
     id: valve2
@@ -104,7 +103,6 @@ switch:
     icon: "mdi:sprinkler-variant"
     on_turn_on:
       - script.execute: valve2_delay_off
-
   - platform: gpio
     pin: D7
     id: valve3
@@ -112,7 +110,6 @@ switch:
     icon: "mdi:sprinkler-variant"
     on_turn_on:
       - script.execute: valve3_delay_off
-
   - platform: gpio
     pin: D8
     id: pump
@@ -155,3 +152,34 @@ sensor:
     humidity:
       name: "Autowatering box moisture"
     update_interval: 10s
+  - platform: wifi_signal
+    name: "WiFi Signal Sensor"
+    update_interval: 60s
+  - platform: uptime
+    name: Uptime Sensor
+    id: uptime_sensor
+    update_interval: 60s
+    on_raw_value:
+      then:
+        - text_sensor.template.publish:
+            id: uptime_human
+            state: !lambda |-
+              int seconds = round(id(uptime_sensor).raw_state);
+              int days = seconds / (24 * 3600);
+              seconds = seconds % (24 * 3600);
+              int hours = seconds / 3600;
+              seconds = seconds % 3600;
+              int minutes = seconds /  60;
+              seconds = seconds % 60;
+              return (
+                (days ? String(days) + "d " : "") +
+                (hours ? String(hours) + "h " : "") +
+                (minutes ? String(minutes) + "m " : "") +
+                (String(seconds) + "s")
+              ).c_str();
+
+text_sensor:
+  - platform: template
+    name: Uptime Human Readable
+    id: uptime_human
+    icon: mdi:clock-start
