@@ -11,7 +11,8 @@ logger:
 api:
 
 ota:
-  password: "6017582ab3fc8fab5df14ad173d67c93"
+- platform: esphome
+  password: !secret ota_password
 
 wifi:
   ssid: !secret wifi_ssid
@@ -20,7 +21,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Smart-Home Fallback Hotspot"
-    password: "Hzng3F4B47uK"
+    password: !secret fallback_wifi_password
 
 captive_portal:
 

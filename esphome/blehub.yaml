@@ -11,7 +11,8 @@ logger:
 api:
 
 ota:
-  password: "559e385ed4d77760ac866565ba017a28"
+- platform: esphome
+  password: !secret ota_password
 
 wifi:
   networks:
@@ -22,7 +23,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Blehub Fallback Hotspot"
-    password: "LehrNHqYn01K"
+    password: !secret fallback_wifi_password
 
 captive_portal:
 
