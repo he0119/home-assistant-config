@@ -29,29 +29,3 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-
-notify:
-  - platform: html5
-    name: firebase
-    vapid_pub_key: !secret vapid_pub_key
-    vapid_prv_key: !secret vapid_prv_key
-    vapid_email: !secret vapid_email
-
-camera:
-  - platform: xiaomi_cloud_map_extractor
-    host: !secret xiaomi_vacuum_host
-    token: !secret xiaomi_vacuum_token
-    username: !secret xiaomi_username
-    password: !secret xiaomi_password
-    draw: ["all"]
-    country: cn
-    attributes:
-      - calibration_points
-
-light:
-  - platform: miio_yeelink
-    name: Mi Smart Bathroom Heater Pro
-    host: !secret xiaomi_mi_smart_bathroom_heater_pro_host
-    token: !secret xiaomi_mi_smart_bathroom_heater_pro_token
-    model: yeelink.bhf_light.v5
-    scan_interval: 1

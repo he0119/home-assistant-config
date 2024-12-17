@@ -12,10 +12,6 @@ git remote add origin https://github.com/he0119/home-assistant-config.git
 git pull
 ```
 
-## Core
-
-- Firebase 网页推送
-
 ## ESPHome
 
 - 自动浇水
